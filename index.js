@@ -1,4 +1,6 @@
 var SlackBot = require('slackbots');
+var Webhook = require('./webhook');
+var webhook = new Webhook();
 
 var config = require('./config.json'); //just .apikey at the minute
 
@@ -39,8 +41,10 @@ bot.on('start', function() {
     }
   }
   });
-
-
-
-
 });
+
+//Begin Webhook integration
+
+webhook.on('data', function(payload){
+  bot.postMessageToUser('joshhodgson', 'New data! ' + JSON.stringify(payload));
+})

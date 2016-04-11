@@ -1,3 +1,4 @@
 {
-  "apikey": "abcd-123456789"
+  "apikey": "abcd-123456789",
+  "hookport": "80"
 }
