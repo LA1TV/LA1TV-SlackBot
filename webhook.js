@@ -14,7 +14,7 @@ function handleRequest(req, res) {
   req.on('end', function() {
     if(fullBody.length>15){
     parser(JSON.parse(fullBody));}
-    res.send("Gotcha");
+    res.end("Gotcha");
   });
 
 }
