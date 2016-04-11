@@ -93,6 +93,6 @@ webhook.on('vod live notLive showOver', function(payload) {
   apiBaseUrl("mediaItems/" + payload.payload.id, function(data) {
     var name = data.data.name;
     bot.postMessageToUser('joshhodgson', 'Something is happening on the website with ' + name);
-
+    bot.postMessageToChannel('streammonitoring', 'Somthing is happening on the website with ' + name + '.... woof!');
   })
 })
