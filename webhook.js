@@ -12,7 +12,8 @@ function handleRequest(req, res) {
   });
   //  var decodedBody = querystring.parse(fullBody);
   req.on('end', function() {
-    parser(JSON.parse(fullBody));
+    if(fullBody.length>15){
+    parser(JSON.parse(fullBody));}
     res.send("Gotcha");
   });
 
