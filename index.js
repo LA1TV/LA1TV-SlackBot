@@ -41,8 +41,10 @@ bot.on('start', function() {
     }
   }
   });
-
-
-
-
 });
+
+//Begin Webhook integration
+
+webhook.on('data', function(payload){
+  bot.postMessageToUser('joshhodgson', 'New data! ' + payload.payload)
+})
