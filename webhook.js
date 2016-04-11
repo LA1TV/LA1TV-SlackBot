@@ -34,4 +34,7 @@ function parser(payload) {
   if (payload.eventID == 'mediaItem.vodAvailable') {
     console.log("New VOD media with id " + payload.payload.id);
   }
+  if (payload.eventID == 'test') {
+    console.log("Test response with message " + payload.payload.info);
+  }
 }
