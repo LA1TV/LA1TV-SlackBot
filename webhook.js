@@ -2,17 +2,16 @@ var http = require('http');
 var config = require('./config');
 var server = http.createServer(handleRequest);
 server.listen(config.hookport);
-var fullBody = "";
 
 function handleRequest(req, res) {
-  console.log(req.type);
+var fullBody = ""
   req.on('data', function(chunk) {
     // append the current chunk of data to the fullBody variable
     fullBody += chunk.toString();
   });
   //  var decodedBody = querystring.parse(fullBody);
   req.on('end', function() {
-    if (fullBody.length > 15) {
+    if (fullBody.length > 5) {
       parser(JSON.parse(fullBody));
     }
     res.end("Gotcha");
@@ -22,19 +21,20 @@ function handleRequest(req, res) {
 
 
 function parser(payload) {
-  if (payload.eventID == 'mediaItem.live') {
+ console.log(payload)
+ if (payload.eventID == 'mediaItem.live') {
     console.log("New live media with id " + payload.payload.id);
   }
-  if (payload.eventID == 'mediaItem.showOver') {
+  if (payload.eventId == 'mediaItem.showOver') {
     console.log("Show now over, id " + payload.payload.id);
   }
-  if (payload.eventID == 'mediaItem.notLive') {
+  if (payload.eventId == 'mediaItem.notLive') {
     console.log("Media item listed as not live " + payload.payload.id);
   }
-  if (payload.eventID == 'mediaItem.vodAvailable') {
+  if (payload.eventId == 'mediaItem.vodAvailable') {
     console.log("New VOD media with id " + payload.payload.id);
   }
-  if (payload.eventID == 'test') {
+  if (payload.eventId == 'test') {
     console.log("Test response with message " + payload.payload.info);
   }
 }
