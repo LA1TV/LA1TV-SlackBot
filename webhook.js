@@ -29,7 +29,7 @@ function webhook() {
   function parser(payload) {
     that.emit('data', payload)
     console.log(payload)
-    if (payload.eventID == 'mediaItem.live') {
+    if (payload.eventId == 'mediaItem.live') {
       that.emit('live', payload);
       console.log("New live media with id " + payload.payload.id);
     }
