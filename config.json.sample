@@ -1,4 +1,5 @@
 {
-  "apikey": "abcd-123456789",
+  "slackapikey": "abcd-123456789",
+  "la1apikey": "cf123456789456",
   "hookport": "80"
 }
