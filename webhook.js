@@ -45,6 +45,10 @@ function webhook() {
       that.emit('vod', payload);
       console.log("New VOD media with id " + payload.payload.id);
     }
+    if (payload.eventId == 'degradedService.stateChanged') {
+      that.emit('degradedServiceStateChanged', payload.payload.enabled);
+      console.log("Degraded service state changed.");
+    }
     if (payload.eventId == 'test') {
       that.emit('test', payload);
       console.log("Test response with message " + payload.payload.info);
