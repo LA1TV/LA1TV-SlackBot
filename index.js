@@ -19,7 +19,6 @@ bot.on('start', function() {
   //This is where the bodging commenses - to send a message to a channel, we need to know its name, so
   //    we store the names in an object, referenced by their ID (tagged in all incoming messages)
   bot.getChannels().then(function(data) {
-    var users = [];
     for (var i in data.channels) {
       var id = data.channels[i].id;
       var name = data.channels[i].name;
@@ -27,9 +26,8 @@ bot.on('start', function() {
     }
   });
 
-
   bot.on('message', function(data) {
-    if (data.type == 'message') {
+    if (data.type === 'message') {
 
       if (data.text.toLowerCase().indexOf("clifford") > -1) {
         bot.postMessageToChannel(channels[data.channel], "woof", {
@@ -61,7 +59,7 @@ bot.on('start', function() {
 
 webhook.on('data', function(payload) {
   bot.postMessageToUser('joshhodgson', 'New data! ' + JSON.stringify(payload));
-})
+});
 
 //Begin API integration
 var apiBaseUrl = "https://www.la1tv.co.uk/api/v1";
@@ -71,13 +69,13 @@ function apiRequest(url, callback) {
   request({
     url: apiBaseUrl + "/" + url,
     headers: {
-      "X-Api-Key": apiKey
+      "X-Api-Key": config.la1apikey
     }
   }, function(error, response, body) {
-    if (!error && response.statusCode == 200) {
+    if (!error && response.statusCode === 200) {
       console.log("Api request completed.");
       callback(JSON.parse(body));
-    } else if (!error && response.statusCode == 404) {
+    } else if (!error && response.statusCode === 404) {
       console.log("Api request completed but a 404 was returned.");
       callback(null);
     } else {
@@ -90,9 +88,9 @@ function apiRequest(url, callback) {
 }
 
 webhook.on('vod live notLive showOver', function(payload) {
-  apiBaseUrl("mediaItems/" + payload.payload.id, function(data) {
+  apiRequest("mediaItems/" + payload.payload.id, function(data) {
     var name = data.data.name;
     bot.postMessageToUser('joshhodgson', 'Something is happening on the website with ' + name);
     bot.postMessageToChannel('streammonitoring', 'Somthing is happening on the website with ' + name + '.... woof!');
-  })
-})
+  });
+});
