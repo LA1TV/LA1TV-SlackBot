@@ -89,7 +89,7 @@ function apiRequest(url, callback) {
 
 webhook.on('vod live notLive showOver', function(payload) {
   apiRequest("mediaItems/" + payload.payload.id, function(data) {
-    var name = data.data.mediaItem.name + " in " + data.data.playlists[0].name +". Watch it at " + data.data.mediaItem.siteUrl;
+    var name = data.data.mediaItem.name + " in " + data.data.playlists[0].name + ". Watch it at " + data.data.mediaItem.siteUrl;
     bot.postMessageToUser('joshhodgson', 'Something is happening on the website with ' + name);
     bot.postMessageToChannel('streammonitoring', 'Somthing is happening on the website with ' + name + ' .... woof!');
   });
