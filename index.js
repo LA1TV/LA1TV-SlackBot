@@ -94,3 +94,14 @@ webhook.on('vod live notLive showOver', function(payload) {
     bot.postMessageToChannel('streammonitoring', 'Somthing is happening on the website with ' + name + ' .... woof!');
   });
 });
+
+webhook.on('degradedServiceStateChanged', function(enabled) {
+  var msg = null;
+  if (enabled) {
+    msg = 'The site has gone into degraded service mode :( .... woof!'
+  }
+  else {
+    msg = 'The site has left degraded service mode :) .... woof!'
+  }
+  bot.postMessageToChannel('monitoring', msg);
+});
