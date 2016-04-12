@@ -30,10 +30,7 @@ bot.on('start', function() {
     if (data.type === 'message') {
 
       if (data.text.toLowerCase().indexOf("clifford") > -1) {
-        bot.postMessageToChannel(channels[data.channel], "woof", {
-          as_user: false,
-          username: "Clifford"
-        });
+        bot.postMessageToChannel(channels[data.channel], "woof", {as_user: true});
       }
 
       if (data.text.toLowerCase().indexOf("cynthia") > -1) {
@@ -90,8 +87,8 @@ function apiRequest(url, callback) {
 webhook.on('vod live notLive showOver', function(payload) {
   apiRequest("mediaItems/" + payload.payload.id, function(data) {
     var name = data.data.mediaItem.name + " in " + data.data.playlists[0].name + ". Watch it at " + data.data.mediaItem.siteUrl;
-    bot.postMessageToUser('joshhodgson', 'Something is happening on the website with ' + name);
-    bot.postMessageToChannel('streammonitoring', 'Somthing is happening on the website with ' + name + ' .... woof!');
+    bot.postMessageToUser('joshhodgson', 'Something is happening on the website with ' + name, {as_user: true});
+    bot.postMessageToChannel('streammonitoring', 'Somthing is happening on the website with ' + name + ' .... woof!', {as_user: true});
   });
 });
 
@@ -103,5 +100,5 @@ webhook.on('degradedServiceStateChanged', function(enabled) {
   else {
     msg = 'The site has left degraded service mode :) .... woof!'
   }
-  bot.postMessageToChannel('monitoring', msg);
+  bot.postMessageToChannel('monitoring', msg, {as_user: true});
 });
