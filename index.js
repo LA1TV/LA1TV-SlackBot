@@ -20,9 +20,11 @@ bot.on('start', function() {
   //    we store the names in an object, referenced by their ID (tagged in all incoming messages)
   bot.getChannels().then(function(data) {
     for (var i in data.channels) {
-      var id = data.channels[i].id;
-      var name = data.channels[i].name;
-      channels[id] = name;
+      if (data.channels[i].id) {
+        var id = data.channels[i].id;
+        var name = data.channels[i].name;
+        channels[id] = name;
+      }
     }
   });
 
@@ -30,7 +32,9 @@ bot.on('start', function() {
     if (data.type === 'message') {
 
       if (data.text.toLowerCase().indexOf("clifford") > -1) {
-        bot.postMessageToChannel(channels[data.channel], "woof", {as_user: true});
+        bot.postMessageToChannel(channels[data.channel], "woof", {
+          as_user: true
+        });
       }
 
       if (data.text.toLowerCase().indexOf("cynthia") > -1) {
@@ -87,18 +91,23 @@ function apiRequest(url, callback) {
 webhook.on('vod live notLive showOver', function(payload) {
   apiRequest("mediaItems/" + payload.payload.id, function(data) {
     var name = data.data.mediaItem.name + " in " + data.data.playlists[0].name + ". Watch it at " + data.data.mediaItem.siteUrl;
-    bot.postMessageToUser('joshhodgson', 'Something is happening on the website with ' + name, {as_user: true});
-    bot.postMessageToChannel('streammonitoring', 'Somthing is happening on the website with ' + name + ' .... woof!', {as_user: true});
+    bot.postMessageToUser('joshhodgson', 'Something is happening on the website with ' + name, {
+      as_user: true
+    });
+    bot.postMessageToChannel('streammonitoring', 'Somthing is happening on the website with ' + name + ' .... woof!', {
+      as_user: true
+    });
   });
 });
 
 webhook.on('degradedServiceStateChanged', function(enabled) {
   var msg = null;
   if (enabled) {
-    msg = 'The site has gone into degraded service mode :( .... woof!'
+    msg = 'The site has gone into degraded service mode :disappointed: .... woof!';
+  } else {
+    msg = 'The site has left degraded service mode :smile: .... woof!';
   }
-  else {
-    msg = 'The site has left degraded service mode :) .... woof!'
-  }
-  bot.postMessageToChannel('monitoring', msg, {as_user: true});
+  bot.postMessageToChannel('monitoring', msg, {
+    as_user: true
+  });
 });
