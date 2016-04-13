@@ -71,7 +71,12 @@ function whoToKill(message) {
   }
   if (wordsLC[words.length - 1] !== "kill") {
     var victimId = wordsLC.indexOf("kill") + 1;
-    return words[victimId];
+    var victim = words[victimId];
+    if(victim.toLowerCase()!=='cynthia'){
+      return victim;
+    }else{
+      return "you, not me";
+    }
   } else {
     return "you";
   }
