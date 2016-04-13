@@ -72,7 +72,7 @@ function whoToKill(message) {
   if (wordsLC[words.length - 1] !== "kill") {
     var victimId = wordsLC.indexOf("kill") + 1;
     var victim = words[victimId];
-    if(victim.toLowerCase()!=='cynthia'){
+    if(victim.toLowerCase().indexOf("cynthia") > -1){
       return victim;
     }else{
       return "you, not me";
