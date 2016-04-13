@@ -1,7 +1,7 @@
 var params = {
   as_user: false,
   username: "Cynthia",
-  icon_emoji: ":beer:"
+  icon_emoji: ":knife:"
 };
 
 function Cynthia(bot) {
@@ -53,7 +53,7 @@ function Cynthia(bot) {
         } else {
           self.postToChannel(channels[data.channel], "I will kill you :knife:");
         }
-        
+
       }
     }
   });
