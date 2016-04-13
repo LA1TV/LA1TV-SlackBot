@@ -47,11 +47,36 @@ function Cynthia(bot) {
   bot.on('message', function(data) {
     if (data.type === 'message') {
       if (data.text.toLowerCase().indexOf("cynthia") > -1) {
-        self.postToChannel(channels[data.channel], "I will kill you :knife:");
+
+        if (data.text.toLowerCase().indexOf("kill") > -1) {
+          self.postToChannel(channels[data.channel], "I will kill " + whoToKill(data.text) + " :knife:");
+        } else {
+          self.postToChannel(channels[data.channel], "I will kill you :knife:");
+        }
+        
       }
     }
   });
 
 }
+
+
+function whoToKill(message) {
+  var words = message.split(String.fromCharCode(32)); //ascii code for space is 32.
+  var wordsLC = [];
+  for (var i in words) {
+    if (words[i]) {
+      wordsLC[i] = words[i].toLowerCase();
+    }
+  }
+  if (wordsLC[words.length - 1] !== "kill") {
+    var victimId = wordsLC.indexOf("kill") + 1;
+    return words[victimId];
+  } else {
+    return "you";
+  }
+}
+
+
 
 module.exports = Cynthia;
