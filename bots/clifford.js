@@ -4,6 +4,7 @@ var params = {
 
 function Clifford(bot) {
   var channels = {};
+  var self=this;
 
   /*
    *
@@ -44,7 +45,7 @@ function Clifford(bot) {
   bot.on('message', function(data) {
     if (data.type === 'message') {
       if (data.text.toLowerCase().indexOf("clifford") > -1) {
-        Clifford.postToChannel(channels[data.channel], "Woof!");
+        self.postToChannel(channels[data.channel], "Woof!");
       }
     }
   });

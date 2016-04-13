@@ -6,6 +6,7 @@ var params = {
 
 function Cynthia(bot) {
   var channels = {};
+  var self = this;
 
   /*
    *
@@ -46,11 +47,7 @@ function Cynthia(bot) {
   bot.on('message', function(data) {
     if (data.type === 'message') {
       if (data.text.toLowerCase().indexOf("cynthia") > -1) {
-        Cynthia.postToChannel(channels[data.channel], "I will kill you :knife:", {
-          username: "Cynthia",
-          icon_emoji: ":knife:",
-          as_user: false
-        });
+        self.postToChannel(channels[data.channel], "I will kill you :knife:");
       }
     }
   });
