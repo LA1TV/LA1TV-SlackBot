@@ -29,13 +29,13 @@ function Stephen(bot) {
    *
    */
   this.postToChannel = function(channel, message) {
-    bot.postToChannel(channel, message, params).fail(console.log);
+    bot.postMessageToChannel(channel, message, params).fail(console.log);
   };
   this.postToUser = function(user, message) {
-    bot.postToUser(user, message, params).fail(console.log);
+    bot.postMessageToUser(user, message, params).fail(console.log);
   };
   this.postToGroup = function(group, message) {
-    bot.postToGroup(group, message, params).fail(console.log);
+    bot.postMessageToGroup(group, message, params).fail(console.log);
   };
   /*
    *
@@ -46,7 +46,7 @@ function Stephen(bot) {
   bot.on('message', function(data) {
     if (data.type === 'message') {
       if (data.text.toLowerCase().indexOf("stephen") > -1) {
-        this.postMessageToChannel(channels[data.channel], "fuck fuck fuck fuck fuck", {
+        this.postToChannel(channels[data.channel], "fuck fuck fuck fuck fuck", {
           username: "Stephen",
           icon_emoji: ":beer:",
           as_user: false

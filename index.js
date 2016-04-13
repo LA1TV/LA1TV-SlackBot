@@ -30,15 +30,10 @@ bot.on('start', function() {
 
 //Begin Webhook integration
 
-webhook.on('data', function(payload) {
-  bot.postMessageToUser('joshhodgson', 'New data! ' + JSON.stringify(payload));
-});
-
-
 webhook.on('vod live notLive showOver', function(payload) {
   website.apiRequest("mediaItems/" + payload.payload.id, function(data) {
     var message = "Something is happenening on the website with " + data.data.mediaItem.name + " in " + data.data.playlists[0].name + ". Watch it at " + data.data.mediaItem.siteUrl + " .... woof!";
-    bot.postMessageToChannel('streammonitoring', message);
+    clifford.postToChannel('streammonitoring', message);
   });
 });
 
@@ -49,7 +44,7 @@ webhook.on('degradedServiceStateChanged', function(enabled) {
   } else {
     msg = 'The site has left degraded service mode :smile: .... woof!';
   }
-  bot.postMessageToChannel('monitoring', msg, {
+  clifford.postToChannel('monitoring', msg, {
     as_user: true
   });
 });
