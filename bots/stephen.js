@@ -46,7 +46,7 @@ function Stephen(bot) {
   bot.on('message', function(data) {
     if (data.type === 'message') {
       if (data.text.toLowerCase().indexOf("stephen") > -1) {
-        this.postToChannel(channels[data.channel], "fuck fuck fuck fuck fuck", {
+        Stephen.postToChannel(channels[data.channel], "fuck fuck fuck fuck fuck", {
           username: "Stephen",
           icon_emoji: ":beer:",
           as_user: false

@@ -44,7 +44,7 @@ function Clifford(bot) {
   bot.on('message', function(data) {
     if (data.type === 'message') {
       if (data.text.toLowerCase().indexOf("clifford") > -1) {
-        this.postToChannel(channels[data.channel], "Woof!");
+        Clifford.postToChannel(channels[data.channel], "Woof!");
       }
     }
   });
