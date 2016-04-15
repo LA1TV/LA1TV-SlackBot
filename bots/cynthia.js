@@ -50,7 +50,9 @@ function Cynthia(bot) {
 
         if (data.text.toLowerCase().indexOf("kill") > -1) {
           self.postToChannel(channels[data.channel], "I will kill " + whoToKill(data.text) + " :knife:");
-        } else {
+        } else if (data.text.toLowerCase().indexOf("say")){
+          self.postToChannel(channels[data.channel], whatToRepeat(data.text) + " :knife:");
+        }else{
           self.postToChannel(channels[data.channel], "I will kill you :knife:");
         }
 
@@ -79,6 +81,26 @@ function whoToKill(message) {
     }
   } else {
     return "you";
+  }
+}
+
+function whatToRepeat(message){
+  var words = message.split(String.fromCharCode(32)); //ascii code for space is 32.
+  var wordsLC = [];
+  for (var i in words) {
+    if (words[i]) {
+      wordsLC[i] = words[i].toLowerCase();
+    }
+  }
+  if (wordsLC[words.length - 1] !== "say") {
+    var toSay = words.slice(wordsLC.indexOf("say") + 1).join(" ");
+    if(toSay.toLowerCase().indexOf("say") === -1){
+      return toSay;
+    }else{
+      return "I will kill you :knife:";
+    }
+  } else {
+    return "I will kill you :knife:";
   }
 }
 
