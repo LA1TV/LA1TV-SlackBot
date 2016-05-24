@@ -18,6 +18,8 @@ function webhook() {
     //  var decodedBody = querystring.parse(fullBody);
     req.on('end', function() {
       if (fullBody.length > 5) {
+        console.log("Incoming webhook request")
+        console.log(fullBody)
         parser(JSON.parse(fullBody));
       }
       res.end("Gotcha");
@@ -27,8 +29,8 @@ function webhook() {
 
 
   function parser(payload) {
-    that.emit('data', payload)
-    console.log(payload)
+    that.emit('data', payload);
+    console.log(payload);
     if (payload.eventId == 'mediaItem.live') {
       that.emit('live', payload);
       console.log("New live media with id " + payload.payload.id);
