@@ -1,7 +1,7 @@
 var http = require('http');
 var config = require('./config');
 var events = require('events').EventEmitter;
-
+var secret= config.hookpassword
 
 function webhook() {
   events.EventEmitter.call(this);
@@ -10,6 +10,7 @@ function webhook() {
   server.listen(config.hookport);
 
   function handleRequest(req, res) {
+    if(req.url == '/webhook?secret=' + secret){
     var fullBody = ""
     req.on('data', function(chunk) {
       // append the current chunk of data to the fullBody variable
@@ -25,8 +26,10 @@ function webhook() {
       res.end("Gotcha");
     });
 
+  }else{
+    res.end("Denied!")
   }
-
+}
 
   function parser(payload) {
     that.emit('data', payload);
