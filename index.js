@@ -44,9 +44,9 @@ webhook.on('vod live notLive showOver', function(payload) {
 webhook.on('degradedServiceStateChanged', function(enabled) {
   var msg = null;
   if (enabled) {
-    msg = 'The site has gone into degraded service mode :disappointed: .... woof! /giphy explosion';
+    msg = 'The site has gone into degraded service mode :disappointed: .... woof!';
   } else {
-    msg = 'The site has left degraded service mode :smile: .... woof! /giphy chill';
+    msg = 'The site has left degraded service mode :smile: .... woof!';
   }
   clifford.postToChannel('monitoring', msg, {
     as_user: true
