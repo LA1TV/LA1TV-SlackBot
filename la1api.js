@@ -1,5 +1,5 @@
 var request = require('request');
-var config = ('./config');
+var config = require('./config.json');
 var apiBaseUrl = "https://www.la1tv.co.uk/api/v1";
 
 

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cron": "^1.1.0",
     "request": "^2.71.0",
     "slackbots": "^0.5.1"
   }
