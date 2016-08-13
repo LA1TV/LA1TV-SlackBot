@@ -32,7 +32,8 @@ bot.on('start', function() {
   sarah = new Sarah(bot);
 
   //Begin Webhook integration
-  webhook.on('vod live notLive showOver', function(payload) {
+  webhook.on("vod live notLive showOver", function(payload) {
+    console.log("Slackbot has got something which is either vod, live, notLive or showOver");
     website.apiRequest("mediaItems/" + payload.payload.id, function(data) {
       var message = "Something is happenening on the website with " + data.data.mediaItem.name + " in " + data.data.playlists[0].name + ". Watch it at " + data.data.mediaItem.siteUrl + " .... woof!";
       clifford.postToChannel('streammonitoring', message, {
