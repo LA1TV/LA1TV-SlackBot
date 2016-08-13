@@ -34,7 +34,7 @@ bot.on('start', function() {
   //Begin Webhook integration
   webhook.on("vod", function(payload) {
     website.apiRequest("mediaItems/" + payload.payload.id, function(data) {
-      var message = "Something is happenening on the website with " + data.data.mediaItem.name + " in " + data.data.playlists[0].name + ". Watch it at " + data.data.mediaItem.siteUrl + " .... woof!";
+      var message = data.data.mediaItem.name + " in " + data.data.playlists[0].name + " now has VOD. Watch it at " + data.data.mediaItem.siteUrl + " .... woof!";
       clifford.postToChannel('streammonitoring', message, {
         as_user: true
       });
@@ -44,7 +44,7 @@ bot.on('start', function() {
   //Begin Webhook integration
   webhook.on("live", function(payload) {
     website.apiRequest("mediaItems/" + payload.payload.id, function(data) {
-      var message = data.data.mediaItem.name + " in " + data.data.playlists[0].name + " is now online with VOD. Watch it at " + data.data.mediaItem.siteUrl + " .... woof!";
+      var message = data.data.mediaItem.name + " in " + data.data.playlists[0].name + " is now live. Watch it at " + data.data.mediaItem.siteUrl + " .... woof!";
       clifford.postToChannel('streammonitoring', message, {
         as_user: true
       });
