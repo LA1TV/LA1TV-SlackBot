@@ -106,7 +106,7 @@ bot.on('start', function() {
         var msg = "The following items need VOD uploading:\r\n"+needVod.map(function(mediaItem) {
           return "- "+mediaItem.name+" ("+mediaItem.siteUrl+")";
         }).join("\r\n")+"\r\n...woof";
-        clifford.postToChannel('general', msg, {
+        clifford.postToChannel('production', msg, {
           as_user: true
         });
       });
