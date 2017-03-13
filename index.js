@@ -24,8 +24,8 @@ var stephen,
 
 
 var bot = new SlackBot({
-  token: config.apikey,
-  name: 'Clifford'
+    token: config.slackapikey,
+    name: 'Clifford'
 });
 
 bot.on('start', function() {
