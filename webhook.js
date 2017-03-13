@@ -7,7 +7,7 @@ function webhook() {
   events.EventEmitter.call(this);
   var that = this;
   var server = http.createServer(handleRequest);
-  server.listen(config.hookport);
+  server.listen(8080);
 
   function handleRequest(req, res) {
     if(req.url == '/webhook?secret=' + secret){
