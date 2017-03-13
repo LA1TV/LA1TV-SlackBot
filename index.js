@@ -1,7 +1,8 @@
-config.slackapikey = process.env.slackapikey
-config.la1apikey = process.env.la1apikey
-config.hookpassword = process.env.hookpassword
-
+var config = {
+    slackapikey: process.env.slackapikey,
+    la1apikey: process.env.la1apikey,
+    hookpassword: process.env.hookpassword
+}
 
 
 var SlackBot = require('slackbots');
