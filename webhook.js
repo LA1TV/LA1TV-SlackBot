@@ -1,7 +1,6 @@
 var http = require('http');
-var config = require('./config');
 var events = require('events').EventEmitter;
-var secret= config.hookpassword
+var secret= process.env.hookpassword
 
 function webhook() {
   events.EventEmitter.call(this);

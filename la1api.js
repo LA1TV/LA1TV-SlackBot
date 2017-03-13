@@ -1,14 +1,13 @@
 var request = require('request');
-var config = require('./config.json');
 var apiBaseUrl = "https://www.la1tv.co.uk/api/v1";
 
 
-function apiRequest(url, callback) {
+function apiRequest(url, api, callback) {
   console.log("Making api request.", url);
   request({
     url: apiBaseUrl + "/" + url,
     headers: {
-      "X-Api-Key": config.la1apikey
+      "X-Api-Key": api
     }
   }, function(error, response, body) {
     if (!error && response.statusCode === 200) {
