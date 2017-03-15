@@ -47,11 +47,11 @@ function Sarah(bot) {
    bot.on('message', function(data) {
        if (data.type === 'message') {
            try {
-               if (data.message.text.toLowerCase().indexOf("sarah") > -1) {
+               if (data.text.toLowerCase().indexOf("sarah") > -1) {
                    self.postToChannel(channels[data.channel], "I am bacon");
                }
            } catch (e) {
-             console.error("Something went wrong! Data was " + JSON.stringify(data) + " and error was " + e);
+               console.error("Something went wrong! Data was " + data + "and error was " + e);
            }
        }
    });
