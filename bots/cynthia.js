@@ -47,17 +47,17 @@ function Cynthia(bot) {
     bot.on('message', function(data) {
         if (data.type === 'message') {
             try {
-                if (data.text.toLowerCase().indexOf("cynthia") > -1) {
+                if (data.message.text.toLowerCase().indexOf("cynthia") > -1) {
 
-                    if (data.text.toLowerCase().indexOf("kill") > -1) {
-                        self.postToChannel(channels[data.channel], "I will kill " + whoToKill(data.text) + " :knife:");
+                    if (data.message.text.toLowerCase().indexOf("kill") > -1) {
+                        self.postToChannel(channels[data.channel], "I will kill " + whoToKill(data.message.text) + " :knife:");
                     } else {
                         self.postToChannel(channels[data.channel], "I will kill you :knife:");
                     }
 
                 }
             } catch (e) {
-                console.error("Something went wrong! Data was " + data + "and error was " + e);
+                console.error("Something went wrong! Data was " + JSON.stringify(data) + " and error was " + e);
             }
         }
 

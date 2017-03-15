@@ -45,11 +45,11 @@ function Clifford(bot) {
     bot.on('message', function(data) {
         if (data.type === 'message') {
             try {
-                if (data.text.toLowerCase().indexOf("clifford") > -1) {
+                if (data.message.text.toLowerCase().indexOf("clifford") > -1) {
                     self.postToChannel(channels[data.channel], "Woof!");
                 }
             } catch (e) {
-                console.error("Something went wrong! Data was " + data + "and error was " + e);
+              console.error("Something went wrong! Data was " + JSON.stringify(data) + " and error was " + e);
             }
         }
     });
