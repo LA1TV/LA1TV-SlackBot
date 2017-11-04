@@ -92,8 +92,8 @@ bot.on('start', function() {
           var shouldHaveVod =
             // live stream ended and marked as being recorded
             (mediaItem.liveStream && mediaItem.liveStream.state === "SHOW_OVER" && mediaItem.liveStream.beingRecorded) ||
-            // vod scheduled to go live within 2 days
-            (mediaItem.vod && mediaItem.vod.scheduledPublishTime >= (Date.now()/1000)-172800);
+            // given there is no live stream we are assuming this is for vod, and it is scheduled to go live within 2 days
+            (!mediaItem.liveStream && mediaItem.scheduledPublishTime >= (Date.now()/1000)-172800);
           // has vod or vod is currently processing
           var hasVod = mediaItem.vod && (mediaItem.vod.processing.completed || !mediaItem.vod.processing.error);
           return shouldHaveVod && !hasVod;
